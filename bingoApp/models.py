@@ -1,13 +1,13 @@
 from django.db import models
 
 
-class Admin(models.Model):
+class BingoAdmin(models.Model):
     name = models.CharField(max_length=100)
 
 
 class AdminNumber(models.Model):
     number = models.IntegerField()
-    admin = models.ForeignKey(Admin, related_name="numbers", on_delete=models.CASCADE)
+    admin = models.ForeignKey(BingoAdmin, related_name="numbers", on_delete=models.CASCADE)
 
 
 class Card(models.Model):
