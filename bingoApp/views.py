@@ -16,6 +16,11 @@ class BingoAdminViewSet(viewsets.ModelViewSet):
         controller.clear_all_numbers(pk)
         return Response(status='204')
 
+    @action(detail=True, methods=['get'])
+    def all_cards(self, request, pk=None):
+        response = self.serializer_class.get_all_cards(id=pk)
+        return Response(data=response.data, status='204')
+
 
 class AdminNumberViewSet(viewsets.ModelViewSet):
     queryset = AdminNumber.objects.all()

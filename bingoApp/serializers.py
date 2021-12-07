@@ -9,6 +9,10 @@ class BingoAdminSerializer(serializers.ModelSerializer):
         model = BingoAdmin
         fields = ['id', 'name']
 
+    def get_all_cards(id):
+        admin = BingoAdmin.objects.get(id=id)
+        return CardSerializer(admin.cars, many=True)
+
 
 class AdminNumberSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,7 +44,7 @@ class AdminNumberSerializer(serializers.ModelSerializer):
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Card
-        fields = ['user_name', 'is_bingo', 'admin', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11',
+        fields = ['id', 'user_name', 'is_bingo', 'admin', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11',
                   'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p20', 'p22', 'p23', 'p24', 'p25']
 
     def create(self, validate_data):
