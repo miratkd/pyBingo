@@ -22,9 +22,9 @@ class AdminNumberSerializer(serializers.ModelSerializer):
         numbers = []
         for x in number_list:
             numbers.append(x.number)
-        if len(numbers) < 10:
+        if len(numbers) < 99:
             while True:
-                random_number = random.randint(1, 10)
+                random_number = random.randint(0, 99)
                 if random_number not in numbers:
                     number = AdminNumber.objects.create(number=random_number, admin=admin)
                     return AdminNumberSerializer(number)
