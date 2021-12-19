@@ -19,7 +19,7 @@ class BingoAdminViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def all_cards(self, request, pk=None):
         response = self.serializer_class.get_all_cards(id=pk)
-        return Response(data=response.data, status='204')
+        return Response(data=response.data, status='200')
 
 
 class AdminNumberViewSet(viewsets.ModelViewSet):
