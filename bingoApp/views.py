@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from bingoApp.models import BingoAdmin, AdminNumber, Card
-from bingoApp.serializers import BingoAdminSerializer, AdminNumberSerializer, CardSerializer
+from bingoApp.serializers import BingoAdminSerializer, AdminNumberSerializer, CardSerializer, BingoNotificationSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from bingoApp import controller
@@ -43,3 +43,18 @@ class CardViewSet(viewsets.ModelViewSet):
     def create(self, request):
         response = CardSerializer.create(self, validate_data=request.data)
         return Response(response.data)
+
+    @action(detail=True, methods=['put'])
+    def toggle_bingo(self, request, pk=None):
+        serializer = controller.toggle_bingo(pk)
+        return Response(status=200, data=serializer.data)
+
+
+class BingoNotificationViewSet(viewsets.ModelViewSet):
+    queryset = Card.objects.all()
+    serializer_class = BingoNotificationSerializer
+
+    @action(detail=True, methods=['get'])
+    def get_notification(self, request, pk=None):
+        serializers_list = controller.get_notification(pk)
+        return Response(status=200, data=serializers_list.data)

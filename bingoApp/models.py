@@ -42,3 +42,8 @@ class Card(models.Model):
     p25 = models.IntegerField(null=True)
 
 
+class BingoNotification(models.Model):
+    admin = models.ForeignKey(BingoAdmin, related_name="notifications", on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+    is_visualized = models.BooleanField(default=False)
+

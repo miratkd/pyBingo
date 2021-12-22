@@ -1,7 +1,7 @@
 import random
 
 from rest_framework import serializers
-from bingoApp.models import BingoAdmin, AdminNumber, Card
+from bingoApp.models import BingoAdmin, AdminNumber, Card, BingoNotification
 
 
 class BingoAdminSerializer(serializers.ModelSerializer):
@@ -91,3 +91,10 @@ class CardSerializer(serializers.ModelSerializer):
             p25=numbers_list[24],
         )
         return CardSerializer(card)
+
+
+class BingoNotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BingoNotification
+        fields = ['card']
+        depth = 1
