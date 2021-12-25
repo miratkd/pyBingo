@@ -57,4 +57,6 @@ class BingoNotificationViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def get_notification(self, request, pk=None):
         serializers_list = controller.get_notification(pk)
+        if len(serializers_list.data) < 1:
+            return Response(status=204)
         return Response(status=200, data=serializers_list.data)
