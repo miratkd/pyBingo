@@ -12,7 +12,7 @@ class AdminNumber(models.Model):
 
 
 class Card(models.Model):
-    user_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     is_bingo = models.BooleanField(default=False)
     admin = models.ForeignKey(BingoAdmin, related_name="cars", on_delete=models.CASCADE, null=True)
     p1 = models.IntegerField(null=True)
